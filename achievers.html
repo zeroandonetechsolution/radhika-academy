@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achievers | Radhika Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/style.css">
+    <style>
+        .page-header { padding: 150px 5% 50px; background: linear-gradient(135deg, rgba(20,20,20,0.9), rgba(10,10,10,0.9)), url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover; text-align: center; }
+        .page-header h1 { font-size: 3.5rem; color: var(--primary-color); margin-bottom: 20px; }
+        .achievers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 50px 5%; max-width: 1200px; margin: 0 auto; }
+        .achiever-card { background: #111; padding: 30px; border-radius: 15px; text-align: center; border: 1px solid #333; }
+        .achiever-card img { width: 120px; height: 120px; border-radius: 50%; margin-bottom: 20px; object-fit: cover; border: 3px solid var(--primary-color); }
+        .achiever-card h3 { color: #fff; margin-bottom: 10px; }
+        .achiever-card p { color: #aaa; font-size: 0.95rem; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Radhika's</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">Who We Are</a></li>
+            <li><a href="expertise.html">Our Expertise</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="upcoming-courses.html">Upcoming Courses</a></li>
+            <li><a href="achievers.html" style="color: var(--primary-color);">Achievers</a></li>
+            <li><a href="feedback.html">Feedback</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+        <a href="login.html" class="nav-btn">Student Portal</a>
+    </nav>
+
+    <div class="page-header gsap-reveal">
+        <h1>Our Achievers</h1>
+        <p>Celebrating the success of our students</p>
+    </div>
+
+    <div class="achievers-grid gsap-reveal">
+        <div class="achiever-card">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Student">
+            <h3>Sneha R.</h3>
+            <p>Now a leading celebrity makeup artist.</p>
+        </div>
+        <div class="achiever-card">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Student">
+            <h3>Arun K.</h3>
+            <p>Runs his own successful fashion boutique.</p>
+        </div>
+        <div class="achiever-card">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Student">
+            <h3>Priya M.</h3>
+            <p>Renowned for exquisite bridal Aari designs.</p>
+        </div>
+    </div>
+
+    <footer><p>&copy; 2026 Radhika's Academy, Coimbatore. All Rights Reserved.</p></footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="static/js/main.js"></script>
+</body>
+</html>
