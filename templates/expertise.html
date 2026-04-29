@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Expertise | Radhika Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .page-header {
+            padding: 150px 5% 50px;
+            background: linear-gradient(135deg, rgba(20,20,20,0.9), rgba(10,10,10,0.9)), url('https://images.unsplash.com/photo-1522337660859-02fbefca4702?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            text-align: center;
+        }
+        .page-header h1 { font-size: 3.5rem; color: var(--primary-color); margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Radhika's</div>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('about') }}">Who We Are</a></li>
+            <li><a href="{{ url_for('expertise') }}" style="color: var(--primary-color);">Our Expertise</a></li>
+            <li><a href="{{ url_for('courses') }}">Courses</a></li>
+            <li><a href="{{ url_for('upcoming_courses') }}">Upcoming Courses</a></li>
+            <li><a href="{{ url_for('achievers') }}">Achievers</a></li>
+            <li><a href="{{ url_for('feedback') }}">Feedback</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+        </ul>
+        <a href="{{ url_for('login') }}" class="nav-btn">Student Portal</a>
+    </nav>
+
+    <div class="page-header gsap-reveal">
+        <h1>Our Expertise</h1>
+        <p>Mastering the craft of beauty and fashion</p>
+    </div>
+
+    <section class="services" style="padding-top: 50px;">
+        <div class="services-grid">
+            <div class="service-card gsap-reveal">
+                <img src="https://images.unsplash.com/photo-1516975080661-46b0852e90f6?auto=format&fit=crop&w=800&q=80" alt="Makeover" class="service-img">
+                <div class="service-info">
+                    <h3>Makeover Artistry</h3>
+                    <p>Creating flawless looks for every occasion with expert precision.</p>
+                </div>
+            </div>
+            <div class="service-card gsap-reveal">
+                <img src="https://images.unsplash.com/photo-1558769132-cb1fac08b042?auto=format&fit=crop&w=800&q=80" alt="Fashion" class="service-img">
+                <div class="service-info">
+                    <h3>Fashion Design</h3>
+                    <p>Innovative designs tailored to modern aesthetics and classic charm.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer><p>&copy; 2026 Radhika's Academy, Coimbatore. All Rights Reserved.</p></footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

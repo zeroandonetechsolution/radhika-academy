@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Radhika Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="auth-container">
+        <div class="auth-box gsap-reveal">
+            <h2>Welcome Back</h2>
+            {% if error %}
+            <p style="color: red; margin-bottom: 15px;">{{ error }}</p>
+            {% endif %}
+            <form method="POST" action="{{ url_for('login') }}">
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" name="email" required placeholder="student@radhika.com">
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" name="password" required placeholder="***">
+                </div>
+                <button type="submit" class="cta-btn" style="width: 100%; margin-top: 10px;">Login</button>
+            </form>
+            <p style="margin-top: 20px; font-size: 14px; color: #666;">Use student@radhika.com or staff@radhika.com (pwd: 123)</p>
+            <a href="{{ url_for('home') }}" style="display: block; margin-top: 15px; color: var(--primary-color); text-decoration: none;">&larr; Back to Home</a>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        gsap.to(".gsap-reveal", { y: 0, opacity: 1, duration: 1, ease: "power3.out" });
+    </script>
+</body>
+</html>

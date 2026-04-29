@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Radhika Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Radhika's Portal</div>
+        <ul>
+            <li><span>Welcome, {{ user.name }}</span></li>
+        </ul>
+        <a href="{{ url_for('logout') }}" class="nav-btn" style="background: #e74c3c;">Logout</a>
+    </nav>
+
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h2>{{ 'Staff' if user.role == 'staff' else 'Student' }} Dashboard</h2>
+        </div>
+
+        {% if user.role == 'student' %}
+            {% if not user.paid %}
+            <div class="payment-alert gsap-reveal">
+                <span><strong>Notice:</strong> You have outstanding fees of ₹{{ user.fees_due }}. Access to premium videos is locked.</span>
+                <form method="POST" action="{{ url_for('pay_fees') }}">
+                    <button type="submit">Pay Now</button>
+                </form>
+            </div>
+            {% endif %}
+
+            <div class="dashboard-cards">
+                <div class="dash-card gsap-reveal">
+                    <h3>My Courses</h3>
+                    <p>You have access to 2 online courses.</p>
+                </div>
+                <div class="dash-card gsap-reveal">
+                    <h3>Fee Status</h3>
+                    <p style="color: {{ 'green' if user.paid else 'red' }}; font-weight: bold;">
+                        {{ 'Paid' if user.paid else 'Pending (₹' ~ user.fees_due ~ ')' }}
+                    </p>
+                </div>
+            </div>
+
+            <h3>Online Classes (Videos)</h3>
+            <div class="video-grid" style="margin-top: 20px;">
+                {% for video in videos %}
+                <div class="video-card gsap-reveal">
+                    <img src="{{ url_for('static', filename='assets/' ~ video.thumbnail) if video.thumbnail else 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=800' }}" alt="Video" class="video-thumbnail">
+                    <div class="video-info">
+                        <h4>{{ video.title }}</h4>
+                        <p style="font-size: 14px; color: #666; margin: 10px 0;">{{ video.description }}</p>
+                        {% if user.paid %}
+                            <a href="#" class="cta-btn" style="padding: 10px 20px; font-size: 14px;">Watch Video</a>
+                        {% else %}
+                            <button class="cta-btn" style="padding: 10px 20px; font-size: 14px; background: #ccc; cursor: not-allowed;" disabled>Locked</button>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+        {% elif user.role == 'staff' %}
+            
+            <div class="dashboard-cards">
+                <div class="dash-card gsap-reveal">
+                    <h3>Total Students</h3>
+                    <p>{{ users|length - 1 }} Enrolled</p>
+                </div>
+                <div class="dash-card gsap-reveal">
+                    <h3>Total Revenue</h3>
+                    <p>₹{{ orders|length * 5000 }}</p>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px;">
+                <div class="gsap-reveal">
+                    <h3>Upload New Class Video</h3>
+                    <div class="auth-box" style="max-width: 100%; padding: 30px; margin-top: 20px; text-align: left;">
+                        <form method="POST" action="{{ url_for('upload_video') }}">
+                            <div class="input-group">
+                                <label>Video Title</label>
+                                <input type="text" name="title" required>
+                            </div>
+                            <div class="input-group">
+                                <label>Description</label>
+                                <input type="text" name="description" required>
+                            </div>
+                            <button type="submit" class="cta-btn">Upload to Portal</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="gsap-reveal">
+                    <h3>Recent Transactions / Orders</h3>
+                    <div class="auth-box" style="max-width: 100%; padding: 30px; margin-top: 20px; text-align: left;">
+                        {% if orders|length > 0 %}
+                            <ul style="list-style: none;">
+                            {% for order in orders %}
+                                <li style="padding: 10px; border-bottom: 1px solid #eee;">
+                                    <strong>{{ order.user }}</strong> paid ₹{{ order.amount }} ({{ order.type }})
+                                </li>
+                            {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>No recent orders.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+        {% endif %}
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        gsap.to(".gsap-reveal", { y: 0, opacity: 1, duration: 1, ease: "power3.out", stagger: 0.2 });
+    </script>
+</body>
+</html>
